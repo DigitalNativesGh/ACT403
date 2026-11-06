@@ -34,14 +34,21 @@ return [
 
     /*
     | WebRTC ICE servers. On one LAN no server is needed; STUN helps across
-    | home routers; TURN is needed only on strict networks.
+    | home routers. Once deployed, candidates on mobile data, campus Wi-Fi or
+    | other strict networks can only be reached through a TURN relay.
+    | RTC_TURN_URLS takes a comma-separated list, e.g.
+    | "turn:host:80,turn:host:443?transport=tcp,turns:host:443?transport=tcp".
     */
     'ice_servers' => array_values(array_filter([
         env('RTC_STUN_URLS', 'stun:stun.l.google.com:19302')
             ? ['urls' => array_map('trim', explode(',', env('RTC_STUN_URLS', 'stun:stun.l.google.com:19302')))]
             : null,
-        env('RTC_TURN_URL')
-            ? ['urls' => env('RTC_TURN_URL'), 'username' => env('RTC_TURN_USERNAME'), 'credential' => env('RTC_TURN_CREDENTIAL')]
+        env('RTC_TURN_URLS', env('RTC_TURN_URL'))
+            ? [
+                'urls' => array_map('trim', explode(',', env('RTC_TURN_URLS', env('RTC_TURN_URL')))),
+                'username' => env('RTC_TURN_USERNAME'),
+                'credential' => env('RTC_TURN_CREDENTIAL'),
+            ]
             : null,
     ])),
 
