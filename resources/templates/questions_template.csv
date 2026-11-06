@@ -1,0 +1,6 @@
+question,option_a,option_b,option_c,option_d,option_e,correct_answer
+Which layer of the OSI model is responsible for routing packets between networks?,Data Link,Network,Transport,Session,,B
+"In software engineering, what does the ""S"" in SOLID stand for?",Single Responsibility Principle,Separation of Concerns,Static Typing,Service Orientation,,A
+What is the worst-case time complexity of QuickSort?,O(n),O(n log n),O(n^2),O(log n),O(1),C
+A primary key in a relational table must be:,Unique and not null,Numeric,Auto-incrementing,Indexed only,,A
+HTTP status code 404 means:,Server error,Unauthorized,Not Found,Moved Permanently,,C
